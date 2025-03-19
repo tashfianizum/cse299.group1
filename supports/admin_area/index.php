@@ -49,7 +49,7 @@
                 
             <button class="my-3"><a href="insert_product.php" class="nav-link text-light bg-info my-1">Insert Products</a></button>
             <button class="my-3"><a href="" class="nav-link text-light bg-info my-1"> view Products</a></button>
-           <button class="my-3"><a href="index.php?insert_categories" class="nav-link text-light bg-info my-1"> Insert Categories</a></button>
+            <button class="my-3"><a href="index.php?insert_categories" class="nav-link text-light bg-info my-1"> Insert Categories</a></button>
            <button class="my-3"><a href="" class="nav-link text-light bg-info my-1">view Categories</a></button>
             <button class="my-3"><a href="index.php?insert_brand" class="nav-link text-light bg-info my-1">Insert Brands</a></button>
             <button class="my-3"><a href="" class="nav-link text-light bg-info my-1">view Brands</a></button>
