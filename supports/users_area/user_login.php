@@ -1,3 +1,8 @@
+<?php
+include('../includes/connect.php');
+include('../functions/common_function.php');
+@session_start();
+?>
 <!DOCTYPE html>
 
 <html lang="en">
@@ -12,7 +17,11 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
      rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
      <link rel="stylesheet" href="../style.css">
-    
+    <style>
+        body{
+            overflow-x: hidden;
+        }
+    </style>
     
 </head>
 <body>
@@ -20,7 +29,7 @@
         <h2 class="text-center"> User Login</h2>
         <div class="row alighn-items-center justify-content-center mt-5">
             <div class="col-lg-12 col-xl-6">
-                <form action="" method="post" enctype="multipart/form-data">
+                <form action="" method="post">
                     <!-- user name field -->
                     <div class="form-outline mb-4">
                         <label for="user_username" class="form-label">Username</label>
@@ -70,6 +79,46 @@
     </div>
 </body>
 </html>
+<?php
+
+if (isset($_POST['user_login'])) {
+    
+    $user_username = $_POST['user_username'];
+    $user_password = $_POST['user_password'];
+    $select_query="select * from `user_table` where username='$user_username'";
+    $result=mysqli_query($conn,$select_query);
+    $rows_count=mysqli_num_rows($result);
+    $row_data=mysqli_fetch_assoc($result);
+    $user_ip=getIPAddress();
+    //cart item
+    $select_query_cart="select * from `cart_details` where ip_address='$user_ip'";
+    $select_cart=mysqli_query($conn,$select_query_cart);
+    $rows_count_cart=mysqli_num_rows($select_cart);
+    if($rows_count>0){
+        $_SESSION['username']=$user_username;
+        if(password_verify($user_password,$row_data['user_password'])){
+            //echo "<script>alert('login successfully')</script>";
+            if($rows_count==1 and $rows_count_cart==0){
+                $_SESSION['username']=$user_username;
+                echo "<script>alert('login successfully')</script>";
+                echo "<script>window.open('profile.php','_self')</script>";
+            }else{
+                $_SESSION['username']=$user_username;
+                echo "<script>alert('login successfully')</script>";
+                echo "<script>window.open('payment.php','_self')</script>"; 
+            }
+        }
+        else{
+            echo "<script>alert('Invalid credentials')</script>";  
+        }
+
+    }else{
+        echo "<script>alert('Invalid credentials')</script>";
+    }
+}
+?>
+
+
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" 
 integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 <script>

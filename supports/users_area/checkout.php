@@ -1,7 +1,7 @@
 <!-- connect file  -->
 <?php
 include('../includes/connect.php');
-
+session_start();
 ?>
 
 <!DOCTYPE html>
@@ -23,14 +23,14 @@ include('../includes/connect.php');
 </head>
 <body>
 <section id="header">
-  <a href="#"><img src="logo/logo.png" class="logo" alt=""></a>
+  <a href="#"><img src="../logo/logo.png" class="logo" alt=""></a>
   <div>
     <ul id="navbar">
-        <li><a class="active" href="index.php">Home</a></li>  
-        <li><a href="shop.php">Shop</a></li> 
-        <li><a href="blog.php">Blog</a></li>  
-        <li><a href="display_all.php">products</a></li>  
-        <li><a href="contact.php">Contact</a></li>
+        <li><a class="active" href="../index.php">Home</a></li>  
+        <li><a href="../shop.php">Shop</a></li> 
+        <li><a href="../Blog.php">Blog</a></li>  
+        <li><a href="../display_all.php">products</a></li>  
+        <li><a class="nav-link" href="user_registration.php">Register</a></li>
         
         <a href="#" id="close"><i class="fa-solid fa-xmark"></i></a>   
     </ul>
@@ -48,10 +48,20 @@ include('../includes/connect.php');
      <li class="nav-item">
         <a class="nav-link" href="#">welcome guest</a>
      </li>
-     <li class="nav-item">
-        <a class="nav-link" href="../users_area/user_login.php">login</a></ul>
+     <?php
+     if(!isset($_SESSION['username'])){
+        echo"<li class='nav-item'>
+        <a class='nav-link' href='user_login.php'>login</a></li>";
+     }else{
+        echo"<li class='nav-item'>
+        <a class='nav-link' href='logout.php'>logout</a></li>";
+     }
+     ?>
+        <li class="nav-item">
+        <a class="nav-link" href="users_area/user_registration.php">Register</a></li>
+    </ul>
       </div>
-  </div>
+ 
   
 </nav>
 <div class="row px-3">
