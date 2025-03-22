@@ -1,3 +1,8 @@
+<?php
+include('includes/connect.php');
+include('functions/common_function.php');
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -14,21 +19,53 @@
 <section id="header">
 <a href="#"><img src="logo/logo.png" class="logo" alt=""></a>
 <div>
-    <ul id="navbar">
-        <li><a  href="index.php">Home</a></li>  
-        <li><a class="active" href="shop.php">Shop</a></li> 
+<ul id="navbar">
+        <li><a class="active" href="index.php">Home</a></li>  
+        <li><a href="shop.php">Shop</a></li> 
         <li><a href="blog.php">Blog</a></li>  
-        <li><a href="about.php">About</a></li>  
-        <li><a href="contact.php">Contact</a></li>
-        <li><a href="sign in.php">Sign in </a></li>
-        <li id="lg-bag"><a href="cart.php"><i class="fa-solid fa-bag-shopping"></i></a></li>  
+        <li><a href="display_all.php">products</a></li>  
+        <li><a class="nav-link" href="./users_area/user_registration.php">Register</a></li>
+        <li class="nav-item">
+        <a class="nav-link" href="#">Total price:<?php
+          total_cart_price();
+        ?>-tk 
+        </a></li>
+        <li id="lg-bag"><a href="cart.php"><i class="fa-solid fa-bag-shopping"></i><sup>
+        <?php
+        cart_item();
+        ?>
+        </sup></a></li>
+         
         <a href="#" id="close"><i class="fa-solid fa-xmark"></i></a>   
     </ul>
-</div>
-<div id="mobile">
-   <a href="#"><i class="fa-solid fa-bag-shopping"></i></a> 
+  </div>
+  <div id="mobile">
+   <a href="cart.php"><i class="fa-solid fa-bag-shopping"></i></a> 
     <i id="bar" class="fa-solid fa-bars"></i>
 </div>
+<nav class="navbar navbar-expand-lg navbar-light bg-secondary">
+   <ul class="navbar-nab me-auto">
+     <li class="nav-item">
+        <a class="nav-link" href="#">welcome guest</a>
+     </li>
+     <?php
+     if(!isset($_SESSION['username'])){
+        echo"<li class='nav-item'>
+        <a class='nav-link' href='./users_area/user_login.php'>logout</a></li>";
+     }else{
+        echo"<li class='nav-item'>
+        <a class='nav-link' href='./users_area/user_logout.php'>login</a></li>";
+     }
+     ?>
+        <li class="nav-item">
+        <a class="nav-link" href="./users_area/user_registration.php">Register</a></li>
+        </ul>
+      </div>
+      </div>
+  
+</nav>
+
+
 </section>
 <section id="page-header">
     
@@ -38,301 +75,32 @@
     <p>Happy shopping</p>
     
 </section>
-<section id="product1" class="section-p1">
-    <div class="pro-container">
-        <div class="pro" onclick="location.href='singleproduct.html';">\
-           <div class="des">
-        <img src="logo/products/f1.jpg" alt="">
-          <h5>cartoon astronaut T-shirt</h5>
-          <span>adidas</span>
-            <div class="star">
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
+<div class="bg-light">
+<h3 class="text-center bg-dark">Hidden store</h3>
+<p class="text-center">communication is at the heart of e-commerce and community</p>
+</div>
 
-            </div>
-            <h4>7800tk</h4>
-
-        </div>
-        <a href="#"><i class="fa-solid fa-cart-shopping cart"></i></a>
+<!-- fourth child-->
+<div class="row px-3">
+<div class="col-md-10">
+    <!-- products-->
+   <div class="row">
+    <!-- fatching data-->
+     <?php
+     //calling function
+      getproducts();
+      get_unique_categories();
+      get_unique_brands();
+      // $ip = getIPAddress();  
+      // echo 'User Real IP Address - '.$ip;
+     ?>
+       <!--row end-->
     </div>
-    <div class="pro">
-        <img src="logo/products/f2.jpg" alt="">
-        <div class="des">
-            <span>adidas</span>
-            <h5>cartoon astronaut T-shirt</h5>
-            <div class="star">
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-
-            </div>
-            <h4>7800tk</h4>
-
-        </div>
-        <a href="#"><i class="fa-solid fa-cart-shopping cart"></i></a>
+    <!--column end-->
     </div>
-    <div class="pro">
-        <img src="logo/products/f3.jpg" alt="">
-        <div class="des">
-            <span>adidas</span>
-            <h5>cartoon astronaut T-shirt</h5>
-            <div class="star">
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-
-            </div>
-            <h4>7800tk</h4>
-
-        </div>
-        <a href="#"><i class="fa-solid fa-cart-shopping cart"></i></a>
-    </div>
-    <div class="pro">
-        <img src="logo/products/f4.jpg" alt="">
-        <div class="des">
-            <span>adidas</span>
-            <h5>cartoon astronaut T-shirt</h5>
-            <div class="star">
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-
-            </div>
-            <h4>7800tk</h4>
-
-        </div>
-        <a href="#"><i class="fa-solid fa-cart-shopping cart"></i></a>
-    </div>
-
-    <div class="pro">
-        <img src="logo/products/f5.jpg" alt="">
-        <div class="des">
-            <span>adidas</span>
-            <h5>cartoon astronaut T-shirt</h5>
-            <div class="star">
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-
-            </div>
-            <h4>7800tk</h4>
-
-        </div>
-        <a href="#"><i class="fa-solid fa-cart-shopping cart"></i></a>
-    </div>
-    <div class="pro">
-        <img src="logo/products/f6.jpg" alt="">
-        <div class="des">
-            <span>adidas</span>
-            <h5>cartoon astronaut T-shirt</h5>
-            <div class="star">
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-
-            </div>
-            <h4>7800tk</h4>
-
-        </div>
-        <a href="#"><i class="fa-solid fa-cart-shopping cart"></i></a>
-    </div>
-    <div class="pro">
-        <img src="logo/products/f7.jpg" alt="">
-        <div class="des">
-            <span>adidas</span>
-            <h5>cartoon astronaut T-shirt</h5>
-            <div class="star">
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-
-            </div>
-            <h4>7800tk</h4>
-
-        </div>
-        <a href="#"><i class="fa-solid fa-cart-shopping cart"></i></a>
-    </div>
-    <div class="pro">
-        <img src="logo/products/f8.jpg" alt="">
-        <div class="des">
-            <span>adidas</span>
-            <h5>cartoon astronaut T-shirt</h5>
-            <div class="star">
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-
-            </div>
-            <h4>7800tk</h4>
-
-        </div>
-        <a href="#"><i class="fa-solid fa-cart-shopping cart" ></i></a>
-    </div>
-    <div class="pro">
-        <div class="des">
-            <span>adidas</span>
-        <img src="logo/products/n1.jpg" alt="">
-          <h5>cartoon astronaut T-shirt</h5>
-            <div class="star">
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-
-            </div>
-            <h4>7800tk</h4>
-
-        </div>
-        <a href="#"><i class="fa-solid fa-cart-shopping cart"></i></a>
-    </div>
-    <div class="pro">
-        <img src="logo/products/n2.jpg" alt="">
-        <div class="des">
-            <span>adidas</span>
-            <h5>cartoon astronaut T-shirt</h5>
-            <div class="star">
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-
-            </div>
-            <h4>7800tk</h4>
-
-        </div>
-        <a href="#"><i class="fa-solid fa-cart-shopping cart"></i></a>
-    </div>
-    <div class="pro">
-        <img src="logo/products/n3.jpg" alt="">
-        <div class="des">
-            <span>adidas</span>
-            <h5>cartoon astronaut T-shirt</h5>
-            <div class="star">
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-
-            </div>
-            <h4>7800tk</h4>
-
-        </div>
-        <a href="#"><i class="fa-solid fa-cart-shopping cart"></i></a>
-    </div>
-    <div class="pro">
-        <img src="logo/products/n4.jpg" alt="">
-        <div class="des">
-            <span>adidas</span>
-            <h5>cartoon astronaut T-shirt</h5>
-            <div class="star">
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-
-            </div>
-            <h4>7800tk</h4>
-
-        </div>
-        <a href="#"><i class="fa-solid fa-cart-shopping cart"></i></a>
-    </div>
-
-    <div class="pro">
-        <img src="logo/products/n5.jpg" alt="">
-        <div class="des">
-            <span>adidas</span>
-            <h5>cartoon astronaut T-shirt</h5>
-            <div class="star">
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-
-            </div>
-            <h4>7800tk</h4>
-
-        </div>
-        <a href="#"><i class="fa-solid fa-cart-shopping cart"></i></a>
-    </div>
-    <div class="pro">
-        <img src="logo/products/n6.jpg" alt="">
-        <div class="des">
-            <span>adidas</span>
-            <h5>cartoon astronaut T-shirt</h5>
-            <div class="star">
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-
-            </div>
-            <h4>7800tk</h4>
-
-        </div>
-        <a href="#"><i class="fa-solid fa-cart-shopping cart"></i></a>
-    </div>
-    <div class="pro">
-        <img src="logo/products/n7.jpg" alt="">
-        <div class="des">
-            <span>adidas</span>
-            <h5>cartoon astronaut T-shirt</h5>
-            <div class="star">
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-
-            </div>
-            <h4>7800tk</h4>
-
-        </div>
-        <a href="#"><i class="fa-solid fa-cart-shopping cart"></i></a>
-    </div>
-    <div class="pro">
-        <img src="logo/products/n8.jpg" alt="">
-        <div class="des">
-            <span>adidas</span>
-            <h5>cartoon astronaut T-shirt</h5>
-            <div class="star">
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-
-            </div>
-            <h4>7800tk</h4>
-
-        </div>
-        <a href="#"><i class="fa-solid fa-cart-shopping cart" ></i></a>
-    </div>
-    </div>
+  
+       </ul>
     
-</section>
 <section id="pagination" class="section-p1">
     <a href="#"> 1</a>
     <a href="#"> 2</a>

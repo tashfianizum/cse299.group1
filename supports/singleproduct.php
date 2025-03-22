@@ -1,3 +1,7 @@
+<?php
+include('includes/connect.php');
+include('functions/common_function.php');
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -14,17 +18,29 @@
 <section id="header">
 <a href="#"><img src="logo/logo.png" class="logo" alt=""></a>
 <div>
-    <ul id="navbar">
-        <li><a  href="index.php">Home</a></li>  
-        <li><a class="active" href="shop.php">Shop</a></li> 
+<ul id="navbar">
+        <li><a class="active" href="index.php">Home</a></li>  
+        <li><a href="shop.php">Shop</a></li> 
         <li><a href="blog.php">Blog</a></li>  
-        <li><a href="about.php">About</a></li>  
-        <li><a href="contact.php">Contact</a></li>
-        <li><a href="sign in.php">Sign in </a></li>
-        <li id="lg-bag"><a href="cart.php"><i class="fa-solid fa-bag-shopping"></i></a></li>  
+        <li><a href="display_all.php">products</a></li>  
+        <li><a class="nav-link" href="./users_area/user_registration.php">Register</a></li>
+        <li class="nav-item">
+        <a class="nav-link" href="#">Total price:<?php
+          total_cart_price();
+        ?>-tk 
+        </a></li>
+        <li id="lg-bag"><a href="cart.php"><i class="fa-solid fa-bag-shopping"></i><sup>
+        <?php
+        cart_item();
+        ?>
+        </sup></a></li>
+        <form class="d-flex" action="search_product.php" method="get">
+      <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="search_data">
+       <input type="submit" value="Search" class="btn btn-outline-light" name="search_data_product">
+    </form>  
         <a href="#" id="close"><i class="fa-solid fa-xmark"></i></a>   
     </ul>
-</div>
+  </div>
 <div id="mobile">
    <a href="#"><i class="fa-solid fa-bag-shopping"></i></a> 
     <i id="bar" class="fa-solid fa-bars"></i>

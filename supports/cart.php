@@ -2,6 +2,7 @@
 <?php
 include('includes/connect.php');
 include('functions/common_function.php');
+session_start();
 ?>
 
 <!DOCTYPE html>
@@ -18,8 +19,7 @@ include('functions/common_function.php');
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
      rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
      <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="register.php">
-    <link rel="stylesheet" href="login.php">
+    
     <style>.cart_img{
       width:80px ;
       height:80px ;
@@ -35,7 +35,7 @@ include('functions/common_function.php');
         <li><a href="shop.php">Shop</a></li> 
         <li><a href="blog.php">Blog</a></li>  
         <li><a href="display_all.php">products</a></li>  
-        <li><a href="contact.php">Contact</a></li>
+        <li><a class="nav-link" href="./users_area/user_registration.php">Register</a></li>
         
         <li id="lg-bag"><a href="cart.php"><i class="fa-solid fa-bag-shopping"></i><sup>
         <?php
@@ -61,12 +61,21 @@ include('functions/common_function.php');
      <li class="nav-item">
         <a class="nav-link" href="#">welcome guest</a>
      </li>
-     <li class="nav-item">
-        <a class="nav-link" href="#">login</a>
-    </li>
+     <?php
+     if(!isset($_SESSION['username'])){
+        echo"<li class='nav-item'>
+        <a class='nav-link' href='./users_area/user_login.php'>login</a></li>";
+     }else{
+        echo"<li class='nav-item'>
+        <a class='nav-link' href='./users_area/user_logout.php'>logout</a></li>";
+     }
+     ?>
+        <a class="nav-link" href="./users_area/user_registration.php">Register</a></li>
+    </ul>
+      </div>
      </ul>
    </div>
-  </div>
+ 
   
 </nav>
 <!-- cart -->
@@ -162,7 +171,7 @@ cart();
                  if($result_count>0){
                     echo"<h4 class='px-3'>Subtotal: <strong class='text-info'>$total_price-TK</strong></h4>
                      <input type='submit' value='Continue shopping' class='bg-info px-3 py-2 border-0' name='continue_shopping'>
-                     <button class='bg-secondary p-3 py-2 border-0 text-light text-decoration-none'><a href='checkout.php'>Checkout</a></button> ";
+                     <button class='bg-secondary p-3 py-2 border-0 text-light text-decoration-none'><a href='./users_area/checkout.php'>Checkout</a></button> ";
                  }
                  else{
                    echo "<input type='submit' value='Continue shopping' class='bg-info px-3 py-2 border-0' name='continue_shopping'>";
