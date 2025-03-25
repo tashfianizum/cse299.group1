@@ -2,6 +2,7 @@
 <?php
 include('includes/connect.php');
 include('functions/common_function.php');
+
 session_start();
 ?>
 
@@ -36,7 +37,6 @@ session_start();
         <li><a href="blog.php">Blog</a></li>  
         <li><a href="display_all.php">products</a></li>  
         <li><a class="nav-link" href="./users_area/user_registration.php">Register</a></li>
-        
         <li id="lg-bag"><a href="cart.php"><i class="fa-solid fa-bag-shopping"></i><sup>
         <?php
         cart_item();
@@ -58,19 +58,25 @@ session_start();
 </section>
 <nav class="navbar navbar-expand-lg navbar-light bg-secondary">
    <ul class="navbar-nab me-auto">
-     <li class="nav-item">
-        <a class="nav-link" href="#">welcome guest</a>
-     </li>
+     
      <?php
+     if(!isset($_SESSION['username'])){
+        echo" <li class='nav-item'>
+        <a class='nav-link' href='#'>welcome guest</a>
+     </li>";
+     }else{
+        echo"<li class='nav-item'>
+        <a class='nav-link' href=''>welcome ".$_SESSION['username']."</a></li>";
+     }
      if(!isset($_SESSION['username'])){
         echo"<li class='nav-item'>
         <a class='nav-link' href='./users_area/user_login.php'>login</a></li>";
      }else{
         echo"<li class='nav-item'>
-        <a class='nav-link' href='./users_area/user_logout.php'>logout</a></li>";
+        <a class='nav-link' href='./users_area/logout.php'>logout</a></li>";
      }
      ?>
-        <a class="nav-link" href="./users_area/user_registration.php">Register</a></li>
+        <li><a class="nav-link" href="./users_area/user_registration.php">Register</a></li>
     </ul>
       </div>
      </ul>
