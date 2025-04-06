@@ -30,9 +30,6 @@ Backend: php
 Database: MySQL
 Payment API: PayPal
 
- Project Structure
 
- Contributions
- Fork the repository.
- Submit pull requests for enhancements or bug fixes.
+
 
