@@ -30,6 +30,43 @@ Backend: php
 Database: MySQL
 Payment API: PayPal
 
+User Features
+- User registration and login
+- Browse and search products
+- Filter products by category or price
+- View detailed product descriptions
+- Add/remove items from cart
+- Wishlist functionality
+- Secure checkout and payment
+- View order history and status
+
+Admin Features
+- Admin dashboard
+- Add, update, or delete products
+- Manage categories
+- View and manage user orders
+
+  Other Features
+- Responsive UI for mobile and desktop
+- User-friendly interface
+- Basic analytics (orders, users, revenue)
+- Authentication & authorization
+- Error handling and form validations
+
+  Database:
+- MySQL
+
+  Future Improvements
+Add product reviews & ratings
+
+Implement coupon/discount system
+
+Add multi-language support
+
+Integrate a recommendation engine
+
+Enable real-time inventory updates
+
 
 
 
